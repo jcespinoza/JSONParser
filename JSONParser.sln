@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONParser", "JSONParser\JSONParser.csproj", "{244E235D-A8F1-45DB-BEC7-ECEDE7228F18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Espinoza.JSONParser.SusyConsole", "Espinoza.JSONParser.SusyConsole\Espinoza.JSONParser.SusyConsole.csproj", "{C188448F-E5D5-41B6-A438-03C54DA2D95A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Espinoza.JSONParser", "Espinoza.JSONParser\Espinoza.JSONParser.csproj", "{C67BA8F0-7F76-4BC0-B69D-26FF64857575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Espinoza.JSONParser.Tests", "Espinoza.JSONParser.Tests\Espinoza.JSONParser.Tests.csproj", "{0927F594-68BE-417A-8EEF-6D054BBB1C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{244E235D-A8F1-45DB-BEC7-ECEDE7228F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{244E235D-A8F1-45DB-BEC7-ECEDE7228F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{244E235D-A8F1-45DB-BEC7-ECEDE7228F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{244E235D-A8F1-45DB-BEC7-ECEDE7228F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C188448F-E5D5-41B6-A438-03C54DA2D95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C188448F-E5D5-41B6-A438-03C54DA2D95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C188448F-E5D5-41B6-A438-03C54DA2D95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C188448F-E5D5-41B6-A438-03C54DA2D95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C67BA8F0-7F76-4BC0-B69D-26FF64857575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67BA8F0-7F76-4BC0-B69D-26FF64857575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67BA8F0-7F76-4BC0-B69D-26FF64857575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67BA8F0-7F76-4BC0-B69D-26FF64857575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0927F594-68BE-417A-8EEF-6D054BBB1C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0927F594-68BE-417A-8EEF-6D054BBB1C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0927F594-68BE-417A-8EEF-6D054BBB1C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0927F594-68BE-417A-8EEF-6D054BBB1C60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
