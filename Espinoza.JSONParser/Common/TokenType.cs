@@ -4,7 +4,7 @@
     {
         SingleQuotedString,
         DoubleQuotedString,
-        NumberLiteral,
+        LiteralNumber,
 
         ReservedWordNull,
 
