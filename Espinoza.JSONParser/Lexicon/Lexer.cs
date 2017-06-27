@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Espinoza.JSONParser.Lexicon
 {
-    public class Lexer
+    public class Lexer : ILexer
     {
         private ISourceCodeReader _sourceCodeProvider;
         private readonly Dictionary<string, TokenType> ReservedKeywords;

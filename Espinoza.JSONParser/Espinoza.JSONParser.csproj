@@ -43,14 +43,20 @@
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\SusyConstants.cs" />
     <Compile Include="Common\Token.cs" />
+    <Compile Include="Common\TokenExtensions.cs" />
     <Compile Include="Common\TokenType.cs" />
     <Compile Include="Enumerations\ExceptionKind.cs" />
     <Compile Include="Exceptions\CompilerException.cs" />
+    <Compile Include="Exceptions\LexicalException.cs" />
+    <Compile Include="Exceptions\SyntaxException.cs" />
+    <Compile Include="Lexicon\ILexer.cs" />
     <Compile Include="Lexicon\ISourceCodeReader.cs" />
     <Compile Include="Lexicon\Lexer.cs" />
     <Compile Include="Lexicon\SourceCodeReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Syntax\SyntaxAnalyzer.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

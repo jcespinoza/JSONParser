@@ -5,6 +5,7 @@
         General,
         Unknown,
         Unexplainable,
-        Lexical
+        Lexical,
+        Syntactic
     }
 }
