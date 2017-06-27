@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Espinoza.JSONParser
 {
@@ -20,7 +17,10 @@ namespace Espinoza.JSONParser
         {
             ConsumeToken();
 
-            ParseFileContent();
+            if (CurrentToken.IsNot(TokenType.EndOfFile))
+            {
+                ParseFileContent();
+            }
 
             if (!EndOfFileHasBeenReached())
             {
@@ -30,9 +30,11 @@ namespace Espinoza.JSONParser
 
         private void ParseFileContent()
         {
-            if (CurrentToken.Is(TokenType.PunctLeftSquareBracket)){
+            if (CurrentToken.Is(TokenType.PunctLeftSquareBracket))
+            {
                 ParseObjectArray();
-            }else
+            }
+            else
             {
                 ParseSingleObject();
             }
@@ -71,7 +73,7 @@ namespace Espinoza.JSONParser
 
             ParseMandatoryToken(TokenType.PunctColon);
 
-            ParseSingleObject();
+            ParseFileContent();
 
             ParseMoreKeyValuePairs();
         }
@@ -80,6 +82,7 @@ namespace Espinoza.JSONParser
         {
             if (CurrentToken.Is(TokenType.PunctComma))
             {
+                ConsumeToken();
                 ParseKeyValuePairs();
             }else
             {
@@ -91,7 +94,7 @@ namespace Espinoza.JSONParser
         {
             ParseMandatoryToken(TokenType.PunctLeftSquareBracket);
 
-            if (CurrentToken.IsNot(TokenType.PunctRightCurlyBrace))
+            if (CurrentToken.IsNot(TokenType.PunctRightSquareBracket))
             {
                 ParseSingleObject();
                 ParseMoreValues();
@@ -104,7 +107,9 @@ namespace Espinoza.JSONParser
         {
             if (CurrentToken.Is(TokenType.PunctComma))
             {
+                ConsumeToken();
                 ParseSingleObject();
+                ParseMoreValues();
             }else
             {
                 // There are no more values in the array
@@ -147,7 +152,7 @@ namespace Espinoza.JSONParser
             var actualArgs = args.ToList();
             actualArgs.Insert(0, arg1);
             var actualMessage = string.Format(message, actualArgs.ToArray());
-            return new SyntaxException(message);
+            return new SyntaxException(actualMessage);
         }
     }
 }

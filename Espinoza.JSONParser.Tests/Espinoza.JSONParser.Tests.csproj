@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="Lexicon\Steps\TokenizerSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Syntax\Specs\GeneralSyntaxSpecs.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneralSyntaxSpecs.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Syntax\Steps\GeneralSyntaxSteps.cs" />
     <Compile Include="Utils\SpecFlowTrasnforms.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +95,10 @@
       <LastGenOutput>TokenizerSpecs.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Syntax\Specs\GeneralSyntaxSpecs.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GeneralSyntaxSpecs.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Espinoza.JSONParser\Espinoza.JSONParser.csproj">
@@ -96,6 +106,7 @@
       <Name>Espinoza.JSONParser</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

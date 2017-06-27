@@ -1,0 +1,13 @@
+{
+  "firstName": "Juan",
+  "middleName": "Carlos",
+  "lastName": "Espinoza",
+  "age": 23,
+  "pendingClasses": [
+    "Compilers II",
+    "Database Theory II",
+    "Networking"
+  ],
+  "averageIndex": 81.5,
+  "universityDegree": null
+}
