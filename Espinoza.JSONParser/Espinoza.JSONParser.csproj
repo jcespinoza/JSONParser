@@ -44,6 +44,8 @@
     <Compile Include="Common\SusyConstants.cs" />
     <Compile Include="Common\Token.cs" />
     <Compile Include="Common\TokenType.cs" />
+    <Compile Include="Enumerations\ExceptionKind.cs" />
+    <Compile Include="Exceptions\CompilerException.cs" />
     <Compile Include="Lexicon\ISourceCodeReader.cs" />
     <Compile Include="Lexicon\Lexer.cs" />
     <Compile Include="Lexicon\SourceCodeReader.cs" />

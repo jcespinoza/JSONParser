@@ -14,6 +14,7 @@
         PunctLeftSquareBracket,
         PunctRightSquareBracket,
         PunctLeftCurlyBrace,
-        PunctRightCurlyBrace
+        PunctRightCurlyBrace,
+        EndOfFile
     }
 }
