@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Espinoza.JSONParser.Lexicon
 {
-    public class SourceCodeReader
+    public class SourceCodeReader : ISourceCodeReader
     {
         private readonly string _sourceCode;
 
@@ -140,5 +136,4 @@ namespace Espinoza.JSONParser.Lexicon
             CurrentLine++;
         }
     }
-
 }

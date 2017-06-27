@@ -2,15 +2,18 @@
 {
     public enum TokenType
     {
-        LeftBracket,
-        RightBracket,
-        LeftCurlyBrace,
-        RightCurlyBrace,
         SingleQuotedString,
         DoubleQuotedString,
         NumberLiteral,
-        NullKeyword,
-        Comma,
-        Colon
+
+        ReservedWordNull,
+
+        PunctComma,
+        PunctColon,
+        PunctPeriod,
+        PunctLeftSquareBracket,
+        PunctRightSquareBracket,
+        PunctLeftCurlyBrace,
+        PunctRightCurlyBrace
     }
 }
