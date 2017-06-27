@@ -26,7 +26,11 @@ namespace Espinoza.JSONParser.Lexicon
 
         private Dictionary<char, Func<char, int, int, Token>> BuildTriggerSymbolsFunctionsDictionary()
         {
-            throw new NotImplementedException();
+            var dictionary = new Dictionary<char, Func<char, int, int, Token>>();
+            dictionary.Add(SusyConstants.EndOfFile, BuildEndOfFileToken);
+            dictionary.Add(SusyConstants.DoubleQuote, ParseStringLiteral);
+            dictionary.Add(SusyConstants.SingleQuote, ParseCharacterLiteral);
+            return dictionary;
         }
 
         private Dictionary<char, TokenType> GetPunctuationSymbolsDictionary()
@@ -71,6 +75,11 @@ namespace Espinoza.JSONParser.Lexicon
             if (PunctuationSymbols.ContainsKey(nextSymbol))
             {
                 return BuildPunctuationSymbol(nextSymbol, line, column);
+            }
+            
+            if (nextSymbol == SusyConstants.Underscore || char.IsLetter(nextSymbol))
+            {
+                return ParseIdentifierOrReservedWord(nextSymbol, line, column);
             }
 
             throw BuildExceptionDueToUnexpectedSymbol(nextSymbol);
@@ -153,6 +162,101 @@ namespace Espinoza.JSONParser.Lexicon
         {
             var tokenType = PunctuationSymbols[symbol];
             return BuildToken(symbol.ToString(), tokenType, line, column);
+        }
+
+        private Token BuildEndOfFileToken(char nextSymbol, int line, int column)
+        {
+            return BuildToken(nextSymbol.ToString(), TokenType.EndOfFile, line, column);
+        }
+
+        private Token ParseIdentifierOrReservedWord(char nextSymbol, int line, int column)
+        {
+            var lexemme = string.Empty;
+            while (nextSymbol == SusyConstants.Underscore || char.IsLetterOrDigit(nextSymbol))
+            {
+                lexemme += nextSymbol;
+                nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+            }
+            AccumulateSymbol(nextSymbol);
+            return BuildIdentifierOrReservedWord(lexemme, line, column);
+        }
+
+        private Token BuildIdentifierOrReservedWord(string lexemme, int line, int column)
+        {
+            if (ReservedKeywords.ContainsKey(lexemme))
+            {
+                var tokenType = ReservedKeywords[lexemme];
+                return BuildToken(lexemme, tokenType, line, column);
+            }
+            else
+            {
+                throw new Exception("No more reserved keywords are supported");
+            }
+        }
+
+        private Token ParseStringLiteral(char nextSymbol, int line, int column)
+        {
+            var isVerbatim = false;
+            var lexemme = string.Empty + nextSymbol;
+            nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+
+            while (nextSymbol != SusyConstants.DoubleQuote
+                   //Allows verbatim literals to retain their newlines
+                   && (nextSymbol != SusyConstants.NewLine || isVerbatim)
+                   && nextSymbol != SusyConstants.EndOfFile)
+            {
+                lexemme += nextSymbol;
+                var nextTwoSymbols = new string(_sourceCodeProvider.PreviewNextSymbols(2).ToArray());
+                // Consume backlashes and the following newline when the literal is not verbatim
+                var nextTwoSymbolsIsADoubleQuoteEscapeSequence = nextTwoSymbols == SusyConstants.DoubleQuoteEscapeSequence;
+                var nextTwoSymbolsShouldBeSkipped = nextTwoSymbols == SusyConstants.NewLineEscapeSequence && !isVerbatim;
+                if (nextTwoSymbolsShouldBeSkipped)
+                {
+                    nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+                    nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+                }
+                else if (nextTwoSymbolsIsADoubleQuoteEscapeSequence)
+                {
+                    lexemme += _sourceCodeProvider.ReadNextSymbol();
+                    lexemme += _sourceCodeProvider.ReadNextSymbol();
+                }
+                nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+            }
+
+            if (nextSymbol == SusyConstants.DoubleQuote)
+            {
+                lexemme += nextSymbol;
+                return BuildToken(lexemme, TokenType.DoubleQuotedString, line, column);
+            }
+            throw BuildExceptionDueToUnexpectedSymbol(nextSymbol);
+        }
+
+        private Token ParseCharacterLiteral(char nextSymbol, int line, int column)
+        {
+            var lexemme = string.Empty + nextSymbol;
+
+            nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+
+            /// Case when the literal has a escape sequence
+            if (nextSymbol == SusyConstants.BackSlash)
+            {
+                lexemme += nextSymbol;
+                nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+                lexemme += nextSymbol;
+            }
+            else
+            {
+                lexemme += nextSymbol;
+            }
+
+            nextSymbol = _sourceCodeProvider.ReadNextSymbol();
+            if (nextSymbol == SusyConstants.SingleQuote)
+            {
+                lexemme += nextSymbol;
+                return BuildToken(lexemme, TokenType.SingleQuotedString, line, column);
+            }
+
+            throw BuildExceptionDueToUnexpectedSymbol(nextSymbol);
         }
 
         private Token BuildToken(string lexemme, TokenType tokenType, int lineNumber, int columnNumber)

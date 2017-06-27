@@ -28,13 +28,13 @@
 		Then the Token should be of type PunctLeftCurlyBrace
 		And the Token should have "{" as lexemme
 		When I get the next available token
-		Then the Token should be of type DoubleQuoteString
+		Then the Token should be of type DoubleQuotedString
 		And the Token should have ""name"" as lexemme
 		When I get the next available token
 		Then the Token should be of type PunctColon
 		And the Token should have ":" as lexemme
 		When I get the next available token
-		Then the Token should be of type DoubleQuoteString
+		Then the Token should be of type DoubleQuotedString
 		And the Token should have ""test"" as lexemme
 		When I get the next available token
 		Then the Token should be of type PunctRightCurlyBrace
@@ -42,7 +42,7 @@
 
 	@Lexicon
 	@HappyPath
-	Scenario: Lexer is able to parse valid identifiers
+	Scenario: Lexer is able to parse valid Jsons
 		Given a source code string
 		"""
 		{ "name" : "test" }
@@ -52,9 +52,9 @@
 		Then the tokens should be these
 		| Lexemme | TokenType            | Column | Line |
 		| {       | PunctLeftCurlyBrace  | 1      | 1    |
-		| "name"  | DoubleQuoteString    | 3      | 1    |
-		| :       | PunctColon           | 9      | 1    |
-		| "test"  | DoubleQuoteString    | 12     | 1    |
+		| "name"  | DoubleQuotedString    | 3      | 1    |
+		| :       | PunctColon           | 10      | 1    |
+		| "test"  | DoubleQuotedString    | 12     | 1    |
 		| }       | PunctRightCurlyBrace | 19     | 1    |
 		| EOF     | EndOfFile            | 20     | 1    |
 

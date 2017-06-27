@@ -119,7 +119,7 @@ namespace Espinoza.JSONParser.Tests.Lexicon.Specs
 #line 30
   testRunner.When("I get the next available token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
-  testRunner.Then("the Token should be of type DoubleQuoteString", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the Token should be of type DoubleQuotedString", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 32
   testRunner.And("the Token should have \"\"name\"\" as lexemme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
@@ -131,7 +131,7 @@ namespace Espinoza.JSONParser.Tests.Lexicon.Specs
 #line 36
   testRunner.When("I get the next available token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
-  testRunner.Then("the Token should be of type DoubleQuoteString", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the Token should be of type DoubleQuotedString", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 38
   testRunner.And("the Token should have \"\"test\"\" as lexemme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
@@ -145,13 +145,13 @@ namespace Espinoza.JSONParser.Tests.Lexicon.Specs
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Lexer is able to parse valid identifiers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Lexer is able to parse valid Jsons")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Tokenizer Specs")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Lexicon")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("HappyPath")]
-        public virtual void LexerIsAbleToParseValidIdentifiers()
+        public virtual void LexerIsAbleToParseValidJsons()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lexer is able to parse valid identifiers", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lexer is able to parse valid Jsons", new string[] {
                         "Lexicon",
                         "HappyPath"});
 #line 45
@@ -176,17 +176,17 @@ namespace Espinoza.JSONParser.Tests.Lexicon.Specs
                         "1"});
             table1.AddRow(new string[] {
                         "\"name\"",
-                        "DoubleQuoteString",
+                        "DoubleQuotedString",
                         "3",
                         "1"});
             table1.AddRow(new string[] {
                         ":",
                         "PunctColon",
-                        "9",
+                        "10",
                         "1"});
             table1.AddRow(new string[] {
                         "\"test\"",
-                        "DoubleQuoteString",
+                        "DoubleQuotedString",
                         "12",
                         "1"});
             table1.AddRow(new string[] {
